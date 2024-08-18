@@ -1,0 +1,65 @@
+$date
+	Sun Aug 18 20:32:14 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_mux4way16 $end
+$var wire 16 ! y [15:0] $end
+$var reg 16 " a [15:0] $end
+$var reg 16 # b [15:0] $end
+$var reg 16 $ c [15:0] $end
+$var reg 16 % d [15:0] $end
+$var reg 2 & sel [1:0] $end
+$scope module uut $end
+$var wire 16 ' a [15:0] $end
+$var wire 16 ( b [15:0] $end
+$var wire 16 ) c [15:0] $end
+$var wire 16 * d [15:0] $end
+$var wire 2 + sel [1:0] $end
+$var wire 16 , y [15:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b1010101010101010 ,
+b0 +
+b1111000011110000 *
+b111100001111 )
+b101010101010101 (
+b1010101010101010 '
+b0 &
+b1111000011110000 %
+b111100001111 $
+b101010101010101 #
+b1010101010101010 "
+b1010101010101010 !
+$end
+#10
+b101010101010101 !
+b101010101010101 ,
+b1 &
+b1 +
+#20
+b111100001111 !
+b111100001111 ,
+b10 &
+b10 +
+#30
+b1111000011110000 !
+b1111000011110000 ,
+b11 &
+b11 +
+#40
+b1010101010101010 !
+b1010101010101010 ,
+b0 &
+b0 +
+#50

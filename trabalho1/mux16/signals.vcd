@@ -1,0 +1,60 @@
+$date
+	Sun Aug 18 19:51:53 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_dmux16 $end
+$var wire 16 ! out_y [15:0] $end
+$var reg 16 " in_a [15:0] $end
+$var reg 16 # in_b [15:0] $end
+$var reg 1 $ in_sel $end
+$scope module uut $end
+$var wire 16 % a [15:0] $end
+$var wire 16 & b [15:0] $end
+$var wire 1 $ sel $end
+$var reg 16 ' y [15:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b11010100100100 '
+b101111010000001 &
+b11010100100100 %
+0$
+b101111010000001 #
+b11010100100100 "
+b11010100100100 !
+$end
+#10
+b101011001100011 !
+b101011001100011 '
+1$
+b101011001100011 #
+b101011001100011 &
+b1101011000001001 "
+b1101011000001001 %
+#20
+b111101100001101 !
+b111101100001101 '
+0$
+b1001100110001101 #
+b1001100110001101 &
+b111101100001101 "
+b111101100001101 %
+#30
+b101001000010010 !
+b101001000010010 '
+1$
+b101001000010010 #
+b101001000010010 &
+b1000010001100101 "
+b1000010001100101 %
+#40

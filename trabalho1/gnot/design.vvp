@@ -1,0 +1,46 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001f7644fe3d0 .scope module, "tb_gnot" "tb_gnot" 2 3;
+ .timescale 0 0;
+v000001f764512870_0 .var "in_a", 0 0;
+v000001f764512910_0 .net "out_y", 0 0, L_000001f764545430;  1 drivers
+S_000001f7644fe560 .scope module, "uut" "gnot" 2 12, 3 4 0, S_000001f7644fe3d0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /OUTPUT 1 "y";
+L_000001f764545430 .functor NOT 1, v000001f764512870_0, C4<0>, C4<0>, C4<0>;
+v000001f7645130d0_0 .net "a", 0 0, v000001f764512870_0;  1 drivers
+v000001f7644fe6f0_0 .net "y", 0 0, L_000001f764545430;  alias, 1 drivers
+    .scope S_000001f7644fe3d0;
+T_0 ;
+    %vpi_call 2 17 "$display", "Testbench para o gate XOR combinacional" {0 0 0};
+    %vpi_call 2 18 "$dumpfile", "signals.vcd" {0 0 0};
+    %vpi_call 2 19 "$dumpvars", 32'sb00000000000000000000000000000000, S_000001f7644fe3d0 {0 0 0};
+    %delay 0, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001f764512870_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000001f764512870_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 25 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_000001f7644fe3d0;
+T_1 ;
+    %vpi_call 2 30 "$monitor", "t=%0t in_a=%b out_y=%b", $time, v000001f764512870_0, v000001f764512910_0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_gnot.v";
+    "./gnot.v";

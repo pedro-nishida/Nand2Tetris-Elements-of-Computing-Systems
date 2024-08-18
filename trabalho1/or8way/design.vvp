@@ -1,0 +1,79 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000020f1d4f7f40 .scope module, "tb_or8way" "tb_or8way" 2 8;
+ .timescale 0 0;
+v0000020f1d501ec0_0 .var "a", 7 0;
+v0000020f1d502a00_0 .net "y", 0 0, L_0000020f1d4f7890;  1 drivers
+S_0000020f1d505730 .scope module, "uut" "or8way" 2 13, 3 4 0, S_0000020f1d4f7f40;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "a";
+    .port_info 1 /OUTPUT 1 "y";
+L_0000020f1d4f76d0 .functor OR 1, L_0000020f1d502140, L_0000020f1d5028c0, C4<0>, C4<0>;
+L_0000020f1d4f7ba0 .functor OR 1, L_0000020f1d4f76d0, L_0000020f1d502500, C4<0>, C4<0>;
+L_0000020f1d4f79e0 .functor OR 1, L_0000020f1d4f7ba0, L_0000020f1d5021e0, C4<0>, C4<0>;
+L_0000020f1d4f7820 .functor OR 1, L_0000020f1d4f79e0, L_0000020f1d502280, C4<0>, C4<0>;
+L_0000020f1d4f7ac0 .functor OR 1, L_0000020f1d4f7820, L_0000020f1d502320, C4<0>, C4<0>;
+L_0000020f1d4f7660 .functor OR 1, L_0000020f1d4f7ac0, L_0000020f1d502780, C4<0>, C4<0>;
+L_0000020f1d4f7890 .functor OR 1, L_0000020f1d4f7660, L_0000020f1d502640, C4<0>, C4<0>;
+v0000020f1d4d3020_0 .net *"_ivl_1", 0 0, L_0000020f1d502140;  1 drivers
+v0000020f1d4d3240_0 .net *"_ivl_11", 0 0, L_0000020f1d5021e0;  1 drivers
+v0000020f1d5023c0_0 .net *"_ivl_12", 0 0, L_0000020f1d4f79e0;  1 drivers
+v0000020f1d501ba0_0 .net *"_ivl_15", 0 0, L_0000020f1d502280;  1 drivers
+v0000020f1d502aa0_0 .net *"_ivl_16", 0 0, L_0000020f1d4f7820;  1 drivers
+v0000020f1d501e20_0 .net *"_ivl_19", 0 0, L_0000020f1d502320;  1 drivers
+v0000020f1d501c40_0 .net *"_ivl_20", 0 0, L_0000020f1d4f7ac0;  1 drivers
+v0000020f1d502960_0 .net *"_ivl_23", 0 0, L_0000020f1d502780;  1 drivers
+v0000020f1d502000_0 .net *"_ivl_24", 0 0, L_0000020f1d4f7660;  1 drivers
+v0000020f1d502460_0 .net *"_ivl_27", 0 0, L_0000020f1d502640;  1 drivers
+v0000020f1d501ce0_0 .net *"_ivl_3", 0 0, L_0000020f1d5028c0;  1 drivers
+v0000020f1d5020a0_0 .net *"_ivl_4", 0 0, L_0000020f1d4f76d0;  1 drivers
+v0000020f1d501d80_0 .net *"_ivl_7", 0 0, L_0000020f1d502500;  1 drivers
+v0000020f1d502820_0 .net *"_ivl_8", 0 0, L_0000020f1d4f7ba0;  1 drivers
+v0000020f1d5025a0_0 .net "a", 7 0, v0000020f1d501ec0_0;  1 drivers
+v0000020f1d501f60_0 .net "y", 0 0, L_0000020f1d4f7890;  alias, 1 drivers
+L_0000020f1d502140 .part v0000020f1d501ec0_0, 0, 1;
+L_0000020f1d5028c0 .part v0000020f1d501ec0_0, 1, 1;
+L_0000020f1d502500 .part v0000020f1d501ec0_0, 2, 1;
+L_0000020f1d5021e0 .part v0000020f1d501ec0_0, 3, 1;
+L_0000020f1d502280 .part v0000020f1d501ec0_0, 4, 1;
+L_0000020f1d502320 .part v0000020f1d501ec0_0, 5, 1;
+L_0000020f1d502780 .part v0000020f1d501ec0_0, 6, 1;
+L_0000020f1d502640 .part v0000020f1d501ec0_0, 7, 1;
+    .scope S_0000020f1d4f7f40;
+T_0 ;
+    %vpi_call 2 19 "$display", "Testbench para Demultiplexador de duas entradas" {0 0 0};
+    %vpi_call 2 20 "$dumpfile", "signals.vcd" {0 0 0};
+    %vpi_call 2 21 "$dumpvars", 32'sb00000000000000000000000000000000, S_0000020f1d4f7f40 {0 0 0};
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0000020f1d501ec0_0, 0, 8;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 8;
+    %store/vec4 v0000020f1d501ec0_0, 0, 8;
+    %delay 10, 0;
+    %pushi/vec4 170, 0, 8;
+    %store/vec4 v0000020f1d501ec0_0, 0, 8;
+    %delay 10, 0;
+    %pushi/vec4 255, 0, 8;
+    %store/vec4 v0000020f1d501ec0_0, 0, 8;
+    %delay 10, 0;
+    %vpi_call 2 28 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0000020f1d4f7f40;
+T_1 ;
+    %vpi_call 2 32 "$monitor", "t=%03d: \011a=%b,y=%b\012", $time, v0000020f1d501ec0_0, v0000020f1d502a00_0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_or8way.v";
+    "./or8way.v";
