@@ -1,4 +1,4 @@
 # Ignora a pasta aula
 /aula
-# ignora zip
+# ignora zips
 *.zip
