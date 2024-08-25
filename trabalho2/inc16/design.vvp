@@ -1,0 +1,56 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001ba2c7d4fe0 .scope module, "tb_inc16" "tb_inc16" 2 3;
+ .timescale 0 0;
+v000001ba2c7b2ca0_0 .var "a", 15 0;
+v000001ba2c7b2d40_0 .net "y", 15 0, L_000001ba2c7b2de0;  1 drivers
+S_000001ba2c7d5170 .scope module, "uut" "inc16" 2 7, 3 1 0, S_000001ba2c7d4fe0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 16 "a";
+    .port_info 1 /OUTPUT 16 "y";
+L_000001ba2c82a028 .functor BUFT 1, C4<0000000000000001>, C4<0>, C4<0>, C4<0>;
+v000001ba2c7b3370_0 .net/2u *"_ivl_0", 15 0, L_000001ba2c82a028;  1 drivers
+v000001ba2c7d5300_0 .net "a", 15 0, v000001ba2c7b2ca0_0;  1 drivers
+v000001ba2c6c81c0_0 .net "y", 15 0, L_000001ba2c7b2de0;  alias, 1 drivers
+L_000001ba2c7b2de0 .arith/sum 16, v000001ba2c7b2ca0_0, L_000001ba2c82a028;
+    .scope S_000001ba2c7d4fe0;
+T_0 ;
+    %vpi_call 2 13 "$display", "Testbench para inc16 de 16 bits" {0 0 0};
+    %vpi_call 2 14 "$dumpfile", "signals.vcd" {0 0 0};
+    %vpi_call 2 15 "$dumpvars", 32'sb00000000000000000000000000000000, S_000001ba2c7d4fe0 {0 0 0};
+    %pushi/vec4 0, 0, 16;
+    %store/vec4 v000001ba2c7b2ca0_0, 0, 16;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 16;
+    %store/vec4 v000001ba2c7b2ca0_0, 0, 16;
+    %delay 10, 0;
+    %pushi/vec4 255, 0, 16;
+    %store/vec4 v000001ba2c7b2ca0_0, 0, 16;
+    %delay 10, 0;
+    %pushi/vec4 4095, 0, 16;
+    %store/vec4 v000001ba2c7b2ca0_0, 0, 16;
+    %delay 10, 0;
+    %pushi/vec4 65535, 0, 16;
+    %store/vec4 v000001ba2c7b2ca0_0, 0, 16;
+    %delay 10, 0;
+    %vpi_call 2 24 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_000001ba2c7d4fe0;
+T_1 ;
+    %vpi_call 2 29 "$monitor", "t=%03d: \011entrada=%b,saida=%b \012", $time, v000001ba2c7b2ca0_0, v000001ba2c7b2d40_0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_inc16.v";
+    "./inc16.v";
