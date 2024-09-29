@@ -1,0 +1,58 @@
+// Assume that R1, R2, and R3 contain the values to be compared
+
+// Load R1 into D
+@1
+D=M
+
+// Compare D (R1) with R2
+@2
+D=D-M
+@R2Greater
+D;JLT
+
+// If R1 >= R2, load R1 into D
+@1
+D=M
+@Continue
+0;JMP
+
+(R2Greater)
+// If R2 > R1, load R2 into D
+@2
+D=M
+
+(Continue)
+// Compare D (max(R1, R2)) with R3
+@3
+D=D-M
+@R3Greater
+D;JLT
+
+// If max(R1, R2) >= R3, load max(R1, R2) into D
+@1
+D=M
+@2
+D=D-M
+@R1GreaterOrEqual
+D;JGE
+@2
+D=M
+
+(R1GreaterOrEqual)
+@Result
+0;JMP
+
+(R3Greater)
+// If R3 > max(R1, R2), load R3 into D
+@3
+D=M
+
+(Result)
+// Store the result in R0
+@0
+M=D
+
+// Infinite loop to end the program
+(END)
+@END
+0;JMP

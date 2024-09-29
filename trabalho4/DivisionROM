@@ -1,0 +1,54 @@
+// Assume that R1 and R2 contain the values to be divided
+
+// Initialize R0 to 0 (this will hold the quotient)
+@0
+M=0
+
+// Load R1 into D (this will be the dividend)
+@1
+D=M
+
+// If R1 is zero, skip the loop (result is zero)
+@END
+D;JEQ
+
+// Load R2 into A (this will be the divisor)
+@2
+A=M
+
+// If R2 is zero, skip the loop (division by zero is undefined)
+@DIV_BY_ZERO
+D;JEQ
+
+// Loop to perform the subtraction R1 / R2 times
+(LOOP)
+@2
+D=M
+@SUBTRACT
+0;JMP
+
+(SUBTRACT)
+@1
+MD=M-D
+
+// If the result of the subtraction is negative, exit the loop
+@END
+D;JLT
+
+// Increment the quotient (R0)
+@0
+M=M+1
+
+// Repeat the loop
+@LOOP
+0;JMP
+
+(DIV_BY_ZERO)
+// Handle division by zero (optional, here we just end the program)
+@END
+0;JMP
+
+// End of the program
+(END)
+@END
+0;JMP

@@ -1,0 +1,41 @@
+// Assume that R1 and R2 contain the values to be multiplied
+
+// Initialize R0 to 0 (this will hold the result)
+@0
+M=0
+
+// Load R1 into D (this will be the counter)
+@1
+D=M
+
+// If R1 is zero, skip the loop
+@END
+D;JEQ
+
+// Load R2 into A (this will be added to R0)
+@2
+A=M
+
+// Loop to perform the addition R1 times
+(LOOP)
+@2
+D=M
+@ADD
+0;JMP
+
+(ADD)
+@0
+M=M+D
+
+// Decrement the counter (R1)
+@1
+MD=M-1
+
+// If counter is not zero, repeat the loop
+@LOOP
+D;JGT
+
+// End of the program
+(END)
+@END
+0;JMP

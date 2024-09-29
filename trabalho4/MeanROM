@@ -1,0 +1,95 @@
+// Assume that R1 contains the starting address and R2 contains the number of values
+
+// Initialize R0 to 0 (this will hold the sum)
+@0
+M=0
+
+// Load R1 into D (this will be the starting address)
+@1
+D=M
+
+// Load R2 into A (this will be the number of values)
+@2
+A=M
+D=A
+
+// If R2 is zero, skip the loop (result is zero)
+@END
+D;JEQ
+
+// Initialize counter to R2
+@2
+D=M
+@Counter
+M=D
+
+// Initialize address pointer to R1
+@1
+D=M
+@Address
+M=D
+
+// Loop to perform the addition R2 times
+(LOOP)
+@Address
+A=M
+D=M
+@0
+M=M+D
+
+// Increment the address pointer
+@Address
+M=M+1
+
+// Decrement the counter
+@Counter
+MD=M-1
+
+// If counter is not zero, repeat the loop
+@LOOP
+D;JGT
+
+// Load the sum into D
+@0
+D=M
+
+// Load R2 into A (this will be the divisor)
+@2
+A=M
+
+// If R2 is zero, skip the division (result is zero)
+@END
+D;JEQ
+
+// Perform the division R0 = sum / R2
+// Initialize quotient to 0
+@0
+M=0
+
+// Loop to perform the subtraction sum / R2 times
+(DIV_LOOP)
+@2
+D=M
+@SUBTRACT
+0;JMP
+
+(SUBTRACT)
+@0
+MD=M-D
+
+// If the result of the subtraction is negative, exit the loop
+@END
+D;JLT
+
+// Increment the quotient (R0)
+@0
+M=M+1
+
+// Repeat the loop
+@DIV_LOOP
+0;JMP
+
+// End of the program
+(END)
+@END
+0;JMP
