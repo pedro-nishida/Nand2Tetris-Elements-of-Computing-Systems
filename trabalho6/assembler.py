@@ -26,78 +26,45 @@ dest_table = {
 jump_table = {
     "": "000", "JGT": "001", "JEQ": "010", "JGE": "011", "JLT": "100", "JNE": "101", "JLE": "110", "JMP": "111"
 }
-# Função para analisar uma linha, removendo comentários e espaços em branco
-def parse_line(line):
-    line = line.split("//")[0].strip()  # Remove comentários e espaços em branco
-    return line if line else None
 
-#########################################################################
-# Primeira passagem: registra os rótulos (labels) na tabela de símbolos
-def first_pass(lines):
-    line_number = 0
-    for line in lines:
-        parsed_line = parse_line(line)
-        if parsed_line:
-            if parsed_line.startswith("(") and parsed_line.endswith(")"):
-                symbol = parsed_line[1:-1]
-                symbol_table[symbol] = line_number
-            else:
-                line_number += 1
+def main():
+    dados = ''
+    while True:
+        try:
+            line = input().strip()
+            if line[:2] != "//" and line != '':
+                if line[0] == '@':
+                    dados += f"{int(line[1:]):016b}\n"
+                else:   # Symbolic syntax:  dest = comp ; jump
+                        # Binary syntax:    1 1 1 a c c c c c c d d d j j j
 
-#########################################################################
-# Segunda passagem: traduz as instruções para código binário
-def second_pass(lines):
-    instructions = []
-    variable_address = 16
-    for line in lines:
-        parsed_line = parse_line(line)
-        if parsed_line:
-            if parsed_line.startswith("@"):
-                # Instrução A
-                symbol = parsed_line[1:]
-                if symbol.isdigit():
-                    # Se for um número, converte diretamente para binário
-                    address = int(symbol)
-                else:
-                    # Se for um símbolo, resolve o endereço
-                    if symbol not in symbol_table:
-                        symbol_table[symbol] = variable_address
-                        variable_address += 1
-                    address = symbol_table[symbol]
-                # Adiciona a instrução A em binário à lista
-                instructions.append(f"{address:016b}")
-            elif "=" in parsed_line or ";" in parsed_line:
-                # Instrução C
-                dest, comp, jump = "", parsed_line, ""
-                if "=" in parsed_line:
-                    # Separa destino e computação
-                    dest, comp = parsed_line.split("=")
-                if ";" in comp:
-                    # Separa computação e salto
-                    comp, jump = comp.split(";")
-                # Adiciona a instrução C em binário à lista
-                instructions.append("111" + comp_table[comp] + dest_table[dest] + jump_table[jump])
-    return instructions
+                    if '=' in line:
+                        line = line.split('=')  # divide a string separando line[0] = dest; line[1] = (comp;jump)
+                        dest = dest_table.get(line[0], "000")
+                        line = line[1]          # line = (comp;jump)
+                    else:
+                        dest = "000"
 
-#########################################################################
-# Função principal para montar o arquivo de entrada e gerar o arquivo de saída
-def assemble(input_file):
-    output_file = os.path.splitext(input_file)[0] + ".bin"
-    
-    with open(input_file, 'r') as file:
-        lines = file.readlines()
+                    if ';' in line: 
+                        line = line.split(';')  # divide a string separando line[0] = comp; line[1] = jump
+                        jump = jump_table.get(line[1], "000")
+                        line = line[0]          # line = comp
+                    else:
+                        jump = "000"
 
-    first_pass(lines)
-    instructions = second_pass(lines)
+                    comp = comp_table.get(line, "0000000")
+                    dados += f"111{comp}{dest}{jump}\n"
 
-    with open(output_file, 'w') as file:
-        for instruction in instructions:
-            file.write(instruction + "\n")
+        except EOFError:
+            break
+
+    # Nome do arquivo
+    nome_arquivo = 'python_out.hack'
+
+    # Abrir o arquivo em modo binário para escrita
+    with open(nome_arquivo, 'w') as arquivo:
+        arquivo.write(dados[:-1])
+
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python assembler.py input.asm")
-        sys.exit(1)
-
-    input_file = sys.argv[1]
-    assemble(input_file)
+    main()
